@@ -11,13 +11,39 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.post('/dataIncoming', function (req, res) {
-  let keys = Object.keys(req);
-  console.log(keys)
-  
-  
+  let body = req.body;
+  let keys = Object.keys(body);
+  let csv = "";
 
+  function makeFirstString() {
+    let holder = [];
+    for (let i = 0; i < keys.length-1; i++) {
+      holder.push(keys[i]);
+    };
+    holder.join(',');
+    holder += '<br>';
+    csv += holder;
+  }
 
-  res.send('I got it boo');
+  function recurse(body) {
+    let holder = [];
+    for (let i = 0; i < keys.length - 1; i++) {
+      holder.push(body[keys[i]]);
+    }
+    holder.join(',');
+    holder += '<br>';
+    csv += holder;
+
+    if (body.children.length === 0){
+      return;
+    }
+    for (let i = 0; i < body.children.length; i++) {
+      recurse(body.children[i]);
+    }
+  }
+  makeFirstString();
+  recurse(body);
+  res.send(csv);
 })
 
 app.listen(3000, () => console.log('Listening on port 3000'));

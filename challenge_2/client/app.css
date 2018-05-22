@@ -14,5 +14,8 @@ body{
   height: 300px;
   width: 300px;
   vertical-align: top;
-  
+}
+
+#response {
+  margin-top: 50px;
 }
