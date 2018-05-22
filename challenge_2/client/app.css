@@ -1,0 +1,16 @@
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#title {
+  font-size: 30px;
+  margin: 20px;
+}
+
+#formSubmit{
+  height: 400px;
+  width: 400px;
+}
