@@ -1,5 +1,3 @@
-// You may assume the JSON data has a regular structure and hierarchy (see included sample file). The server must flatten the JSON hierarchy, mapping each item in the JSON to a single line of CSV report (see included sample output). You may assume child records in the JSON will always be in a property called children but you may not assume a JSON record has any other specific properties; i.e. any properties that exist besides children must be mapped to a column in your CSV report.
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -14,19 +12,32 @@ app.post('/dataIncoming', function (req, res) {
   let body = req.body;
   let keys = Object.keys(body);
   let csv = "";
+  let id = 1;
 
   function makeFirstString() {
     let holder = [];
+    holder.push('id');
+    holder.push('parent ID')
     for (let i = 0; i < keys.length-1; i++) {
       holder.push(keys[i]);
     };
     holder.join(',');
     holder += '<br>';
     csv += holder;
-  }
+  };
 
-  function recurse(body) {
+  function recurse(body, child) {
     let holder = [];
+    holder.push(id);
+    id++;
+
+    if (child === 0) {
+      holder.push('null');
+    } else {
+      holder.push(child);
+    }
+    child++;
+
     for (let i = 0; i < keys.length - 1; i++) {
       holder.push(body[keys[i]]);
     }
@@ -38,11 +49,12 @@ app.post('/dataIncoming', function (req, res) {
       return;
     }
     for (let i = 0; i < body.children.length; i++) {
-      recurse(body.children[i]);
+      recurse(body.children[i], child);
     }
-  }
+  };
+
   makeFirstString();
-  recurse(body);
+  recurse(body, 0);
   res.send(csv);
 })
 

@@ -2,20 +2,52 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(202, 202, 202);
 
 }
-
 #title {
-  font-size: 30px;
+  font-size: 40px;
   margin: 20px;
+  font-family: 'Bitter', serif;
 }
 
 #formSubmit{
   height: 300px;
   width: 300px;
   vertical-align: top;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+
+#buttonSubmit, #clear{
+  width: 305px;
+  height: 23px;
+  text-align: center;
+  background-color: white;
+  font-family: 'Bitter', serif;
+  border-top: 1px solid black;
+  padding-top: 2px;
+}
+
+#buttonSubmit:hover, #clear:hover{
+  background-color: rgb(245, 211, 118);
+}
+
+#buttonSubmit:active, #clear:active{
+  background-color:rgb(225, 0, 255);
 }
 
 #response {
   margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  line-height: 25px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  background: white;
+}
+
+#pic {
+  height: 200px;
 }
