@@ -32,7 +32,6 @@ class App extends React.Component{
         secondPage:true,
         firstPageState: state,
       });
-      console.log(this.state);
     }
   }
 
@@ -123,7 +122,6 @@ class FirstPage extends React.Component{
   // }
 
   handleNavClick(event) {
-    console.log(this.state);
     let state = this.state;
     return this.props.click(event.target.className, state);
   }
@@ -184,7 +182,8 @@ class SecondPage extends React.Component{
   // }
 
   handleNavClick(event) {
-    return this.props.click(event.target.className, this.state);
+    let state = this.state;
+    return this.props.click(event.target.className, state);
   }
 
   render() {
@@ -252,7 +251,8 @@ class ThirdPage extends React.Component{
   // }
 
   handleNavClick(event) {
-    return this.props.click(event.target.className, this.state);
+    let state = this.state;
+    return this.props.click(event.target.className, state);
   }
 
 
@@ -293,46 +293,45 @@ class ThirdPage extends React.Component{
 
 // -------------------------------------------------------------
 function ConfirmationPage (props){
-  console.log(props);
     return(
     <div className="holderConfirmationPage">
     
     <div className="css"> Name </div>
-    <div className="cssConf"> {props.name} </div>
+    <div className="cssConf"> {props.firstPageState.name} </div>
 
     <div className="css"> Email </div>
-    <div className="cssConf"> {props.email} </div>
+    <div className="cssConf"> {props.firstPageState.email} </div>
 
     <div className="css"> Password </div>
-    <div className="cssConf"> {props.password} </div>
+    <div className="cssConf"> {props.firstPageState.password} </div>
 
     <div className="css"> Address </div>
-    <div className="cssConf"> {props.addressLine1} </div>
-    <div className="cssConf"> {props.addressLine2} </div>
+    <div className="cssConf"> {props.secondPageState.addressLine1} </div>
+    <div className="cssConf"> {props.secondPageState.addressLine2} </div>
 
     <div className="css"> City </div>
-    <div className="cssConf"> {props.city} </div>
+    <div className="cssConf"> {props.secondPageState.city} </div>
 
     <div className="css"> State </div>
-    <div className="cssConf"> {props.state} </div>
+    <div className="cssConf"> {props.secondPageState.state} </div>
 
     <div className="css"> Zip </div>
-    <div className="cssConf"> {props.zipCode} </div>
+    <div className="cssConf"> {props.secondPageState.zipCode} </div>
 
     <div className="css"> Phone Number </div>
-    <div className="cssConf"> {props.phoneNumber} </div>
+    <div className="cssConf"> {props.secondPageState.phoneNumber} </div>
 
     <div className="css"> Credit Card Number </div>
-    <div className="cssConf"> {props.creditCard} </div>
+    <div className="cssConf"> {props.thirdPageState.creditCard} </div>
 
     <div className="css"> Expiry Date </div>
-    <div className="cssConf"> {props.expiryDate} </div>
+    <div className="cssConf"> {props.thirdPageState.expiryDate} </div>
 
     <div className="css"> CVV </div>
-    <div className="cssConf"> {props.cvv} </div>
+    <div className="cssConf"> {props.thirdPageState.cvv} </div>
 
     <div className="css"> Billing Zip </div>
-    <div className="cssConf"> {props.billingZC} </div>
+    <div className="cssConf"> {props.thirdPageState.billingZC} </div>
 
     </div>
   ) 

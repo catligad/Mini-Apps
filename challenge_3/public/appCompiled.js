@@ -53,7 +53,6 @@ var App = function (_React$Component) {
           secondPage: true,
           firstPageState: state
         });
-        console.log(this.state);
       }
     }
   }, {
@@ -160,7 +159,6 @@ var FirstPage = function (_React$Component2) {
   }, {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
-      console.log(this.state);
       var state = this.state;
       return this.props.click(event.target.className, state);
     }
@@ -261,7 +259,8 @@ var SecondPage = function (_React$Component3) {
   }, {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
-      return this.props.click(event.target.className, this.state);
+      var state = this.state;
+      return this.props.click(event.target.className, state);
     }
   }, {
     key: 'render',
@@ -383,7 +382,8 @@ var ThirdPage = function (_React$Component4) {
   }, {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
-      return this.props.click(event.target.className, this.state);
+      var state = this.state;
+      return this.props.click(event.target.className, state);
     }
   }, {
     key: 'render',
@@ -461,7 +461,6 @@ var ThirdPage = function (_React$Component4) {
 
 
 function ConfirmationPage(props) {
-  console.log(props);
   return React.createElement(
     'div',
     { className: 'holderConfirmationPage' },
@@ -474,7 +473,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.name,
+      props.firstPageState.name,
       ' '
     ),
     React.createElement(
@@ -486,7 +485,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.email,
+      props.firstPageState.email,
       ' '
     ),
     React.createElement(
@@ -498,7 +497,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.password,
+      props.firstPageState.password,
       ' '
     ),
     React.createElement(
@@ -510,14 +509,14 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.addressLine1,
+      props.secondPageState.addressLine1,
       ' '
     ),
     React.createElement(
       'div',
       { className: 'cssConf' },
       ' ',
-      props.addressLine2,
+      props.secondPageState.addressLine2,
       ' '
     ),
     React.createElement(
@@ -529,7 +528,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.city,
+      props.secondPageState.city,
       ' '
     ),
     React.createElement(
@@ -541,7 +540,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.state,
+      props.secondPageState.state,
       ' '
     ),
     React.createElement(
@@ -553,7 +552,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.zipCode,
+      props.secondPageState.zipCode,
       ' '
     ),
     React.createElement(
@@ -565,7 +564,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.phoneNumber,
+      props.secondPageState.phoneNumber,
       ' '
     ),
     React.createElement(
@@ -577,7 +576,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.creditCard,
+      props.thirdPageState.creditCard,
       ' '
     ),
     React.createElement(
@@ -589,7 +588,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.expiryDate,
+      props.thirdPageState.expiryDate,
       ' '
     ),
     React.createElement(
@@ -601,7 +600,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.cvv,
+      props.thirdPageState.cvv,
       ' '
     ),
     React.createElement(
@@ -613,7 +612,7 @@ function ConfirmationPage(props) {
       'div',
       { className: 'cssConf' },
       ' ',
-      props.billingZC,
+      props.thirdPageState.billingZC,
       ' '
     )
   );
