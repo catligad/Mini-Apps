@@ -12,6 +12,8 @@
   "dependencies": {
     "express": "^4.16.3",
     "jquery": "^3.3.1",
+    "mongodb": "^3.1.0-beta4",
+    "mongoose": "^5.1.2",
     "nodemon": "^1.17.4"
   }
 }

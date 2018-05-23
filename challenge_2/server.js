@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-
+var mongo = require('./mongo.js');
 
 var app = express();
 app.use(bodyParser.json());
@@ -55,6 +55,12 @@ app.post('/dataIncoming', function (req, res) {
 
   makeFirstString();
   recurse(body, 0);
+  
+  let newcsv = new mongo({file: csv});
+  newcsv.save().then(item => console.log(item));
+  mongo.find({file: csv}, (arr) => {
+    console.log(arr);
+  })
   res.send(csv);
 })
 
