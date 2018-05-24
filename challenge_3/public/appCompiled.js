@@ -48,7 +48,7 @@ var App = function (_React$Component) {
     }
   }, {
     key: 'onNaviClick',
-    value: function onNaviClick(btn, state) {
+    value: function onNaviClick(btn, state, page) {
       if (btn == "previousBtn") {
         this.setState(function (prevState, props) {
           return {
@@ -58,11 +58,25 @@ var App = function (_React$Component) {
       } else if (btn == "nextBtn") {
         this.setState(function (prevState, props) {
           return {
-            currentPage: ++prevState.currentPage,
-            firstPageState: state
+            currentPage: ++prevState.currentPage
           };
         });
-        this.postData('http://127.0.0.1:3000/page1', state);
+        if (page == 1) {
+          this.postData('http://127.0.0.1:3000/page1', state);
+          this.setState({
+            firstPageState: state
+          });
+        } else if (page == 2) {
+          this.postData('http://127.0.0.1:3000/page2', state);
+          this.setState({
+            secondPageState: state
+          });
+        } else if (page == 3) {
+          this.postData('http://127.0.0.1:3000/page3', state);
+          this.setState({
+            thirdPageState: state
+          });
+        }
       } else if (btn == "checkout") {
         this.setState(function (prevState, props) {
           return {
@@ -152,7 +166,7 @@ var FirstPage = function (_React$Component2) {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
       var state = this.state;
-      return this.props.click(event.target.className, state);
+      return this.props.click(event.target.className, state, 1);
     }
   }, {
     key: 'render',
@@ -264,7 +278,7 @@ var SecondPage = function (_React$Component3) {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
       var state = this.state;
-      return this.props.click(event.target.className, state);
+      return this.props.click(event.target.className, state, 2);
     }
   }, {
     key: 'render',
@@ -414,7 +428,7 @@ var ThirdPage = function (_React$Component4) {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
       var state = this.state;
-      return this.props.click(event.target.className, state);
+      return this.props.click(event.target.className, state, 3);
     }
   }, {
     key: 'render',

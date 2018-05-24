@@ -26,7 +26,7 @@ class App extends React.Component {
     })
   }
 
-  onNaviClick(btn, state) {
+  onNaviClick(btn, state, page) {
     if (btn == "previousBtn") {
       this.setState((prevState, props) => ({
         currentPage: --prevState.currentPage,
@@ -34,9 +34,23 @@ class App extends React.Component {
     } else if (btn == "nextBtn") {
       this.setState((prevState, props) => ({
         currentPage: ++prevState.currentPage,
-        firstPageState: state
       }));
-      this.postData('http://127.0.0.1:3000/page1', state);
+      if (page == 1) {
+        this.postData('http://127.0.0.1:3000/page1', state);
+        this.setState({
+          firstPageState: state
+        })
+      } else if (page == 2) {
+        this.postData('http://127.0.0.1:3000/page2', state);
+        this.setState({
+          secondPageState: state
+        })
+      } else if (page == 3) {
+        this.postData('http://127.0.0.1:3000/page3', state);
+        this.setState({
+          thirdPageState: state
+        })
+      }
     } else if (btn == "checkout") {
       this.setState((prevState, props) => ({
         currentPage: ++prevState.currentPage,
@@ -110,7 +124,7 @@ class FirstPage extends React.Component {
 
   handleNavClick(event) {
     let state = this.state;
-    return this.props.click(event.target.className, state);
+    return this.props.click(event.target.className, state, 1);
   }
 
   render() {
@@ -188,7 +202,7 @@ class SecondPage extends React.Component {
 
   handleNavClick(event) {
     let state = this.state;
-    return this.props.click(event.target.className, state);
+    return this.props.click(event.target.className, state, 2);
   }
 
   render() {
@@ -292,7 +306,7 @@ class ThirdPage extends React.Component {
 
   handleNavClick(event) {
     let state = this.state;
-    return this.props.click(event.target.className, state);
+    return this.props.click(event.target.className, state, 3);
   }
 
   render() {
