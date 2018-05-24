@@ -15,15 +15,20 @@ class App extends Component{
               [0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0]
               ],
-      turn: 0,
+      turn: true,
     }
   }
 
   onColClick(colIndex, cellIndex){
     this.setState( (prevState, props) => {
       prevState.board[colIndex][cellIndex] = 1;
-      return {board: prevState.board};
+      prevState.turn = !prevState.turn;
+      return {board: prevState.board, turn:prevState.turn};
     })
+  }
+
+  componentDidUpdate(){
+    console.log(this.state);
   }
 
   render(){
