@@ -1,17 +1,22 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Component } from 'react';
+import React, { Component } from 'react';
+import Column from './components/column.jsx';
 
 
-class App extends React.Component{
+class App extends Component{
   constructor(props) {
     super(props);
   }
 
   render(){
+    const columns = [0,1,2,3,4,5,6].map( val => 
+      <Column key={val} index={val} />
+    );
     return(
-      <div>Hello World!</div>
-    )
+      <div className="board">
+        {columns}
+      </div>
+    )   
   }
 }
 
