@@ -58,9 +58,7 @@ var App = function (_React$Component) {
           currentPage: 2,
           firstPageState: state
         });
-        this.postData('http://127.0.0.1:3000/page1', state).then(function (data) {
-          return console.log(data);
-        });
+        this.postData('http://127.0.0.1:3000/page1', state);
       }
     }
   }, {
@@ -76,9 +74,7 @@ var App = function (_React$Component) {
           secondPageState: state
         });
       }
-      this.postData('http://127.0.0.1:3000/page1', state).then(function (data) {
-        return console.log(data);
-      });
+      this.postData('http://127.0.0.1:3000/page1', state);
     }
   }, {
     key: 'onThirdPageClick',
@@ -93,9 +89,7 @@ var App = function (_React$Component) {
           thirdPageState: state
         });
       }
-      this.postData('http://127.0.0.1:3000/page1', state).then(function (data) {
-        return console.log(data);
-      });
+      this.postData('http://127.0.0.1:3000/page1', state);
     }
   }, {
     key: 'render',
@@ -174,11 +168,6 @@ var FirstPage = function (_React$Component2) {
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.className, event.target.value));
     }
-
-    // handleClick(event) {
-    //   this.setState
-    // }
-
   }, {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
@@ -250,11 +239,6 @@ var FirstPage = function (_React$Component2) {
             ),
             React.createElement(
               'span',
-              { className: 'submitBtn' },
-              ' Submit '
-            ),
-            React.createElement(
-              'span',
               { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
               'Next'
             )
@@ -296,11 +280,6 @@ var SecondPage = function (_React$Component3) {
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.className, event.target.value));
     }
-
-    // handleClick(event) {
-    //   this.setState
-    // }
-
   }, {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
@@ -412,11 +391,6 @@ var SecondPage = function (_React$Component3) {
             ),
             React.createElement(
               'span',
-              { className: 'submitBtn' },
-              ' Submit '
-            ),
-            React.createElement(
-              'span',
               { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
               'Next'
             )
@@ -456,11 +430,6 @@ var ThirdPage = function (_React$Component4) {
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.className, event.target.value));
     }
-
-    // handleClick(event) {
-    //   this.setState
-    // }
-
   }, {
     key: 'handleNavClick',
     value: function handleNavClick(event) {
@@ -544,11 +513,6 @@ var ThirdPage = function (_React$Component4) {
                 onClick: this.handleNavClick.bind(this)
               },
               'Previous'
-            ),
-            React.createElement(
-              'span',
-              { className: 'submitBtn' },
-              ' Submit '
             ),
             React.createElement(
               'span',

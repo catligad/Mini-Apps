@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost/userData');
+mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
 
@@ -14,11 +16,14 @@ var Schema = mongoose.Schema;
 var userInfo = new Schema ({
   name: String,
   email: String,
-  password: String
+  password: String,
+  addressInfo: {type: Schema.Types.ObjectId, ref: 'Address'},
+  ccInfo: {type: Schema.Types.ObjectId, ref: 'CC'}
 });
 
 var addressInfo = new Schema({
-  address: String,
+  addressLine1: String,
+  addressLine2: String,
   city: String,
   state: String,
   zipCode: String,
@@ -32,8 +37,11 @@ var ccInfo = new Schema({
   billingZC: String
 })
 
-var User = mongoose.model('User', userInfo);
-var Address = mongoose.model('Address', addressInfo);
-var CC = mongoose.model('CC', ccInfo);
 
-module.exports = db;
+var models = {
+  User : mongoose.model('User', userInfo),
+  Address : mongoose.model('Address', addressInfo),
+  CC : mongoose.model('CC', ccInfo)
+}
+
+module.exports = models;

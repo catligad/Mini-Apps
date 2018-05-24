@@ -36,8 +36,7 @@ class App extends React.Component {
         currentPage: 2,
         firstPageState: state
       });
-      this.postData('http://127.0.0.1:3000/page1', state)
-        .then(data => console.log(data));
+      this.postData('http://127.0.0.1:3000/page1', state);
     }
   }
 
@@ -52,8 +51,7 @@ class App extends React.Component {
         secondPageState: state
       });
     }
-    this.postData('http://127.0.0.1:3000/page1', state)
-        .then(data => console.log(data));
+    this.postData('http://127.0.0.1:3000/page1', state);
   }
 
   onThirdPageClick(btn, state) {
@@ -67,8 +65,7 @@ class App extends React.Component {
         thirdPageState: state
       });
     }
-    this.postData('http://127.0.0.1:3000/page1', state)
-        .then(data => console.log(data));
+    this.postData('http://127.0.0.1:3000/page1', state);
   }
 
   render() {
@@ -135,10 +132,6 @@ class FirstPage extends React.Component {
     });
   }
 
-  // handleClick(event) {
-  //   this.setState
-  // }
-
   handleNavClick(event) {
     let state = this.state;
     return this.props.click(event.target.className, state);
@@ -185,7 +178,6 @@ class FirstPage extends React.Component {
             >
               Previous
             </span>
-            <span className="submitBtn"> Submit </span>
             <span className="nextBtn" onClick={this.handleNavClick.bind(this)}>
               Next
             </span>
@@ -217,10 +209,6 @@ class SecondPage extends React.Component {
       [event.target.className]: event.target.value
     });
   }
-
-  // handleClick(event) {
-  //   this.setState
-  // }
 
   handleNavClick(event) {
     let state = this.state;
@@ -296,7 +284,6 @@ class SecondPage extends React.Component {
             >
               Previous
             </span>
-            <span className="submitBtn"> Submit </span>
             <span className="nextBtn" onClick={this.handleNavClick.bind(this)}>
               Next
             </span>
@@ -326,10 +313,6 @@ class ThirdPage extends React.Component {
       [event.target.className]: event.target.value
     });
   }
-
-  // handleClick(event) {
-  //   this.setState
-  // }
 
   handleNavClick(event) {
     let state = this.state;
@@ -387,7 +370,7 @@ class ThirdPage extends React.Component {
             >
               Previous
             </span>
-            <span className="submitBtn"> Submit </span>
+
             <span className="nextBtn" onClick={this.handleNavClick.bind(this)}>
               Next
             </span>
