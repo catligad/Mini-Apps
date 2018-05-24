@@ -28,13 +28,6 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: 'onCheckoutClick',
-    value: function onCheckoutClick() {
-      this.setState({
-        currentPage: 1
-      });
-    }
-  }, {
     key: 'postData',
     value: function postData(url, data) {
       return fetch(url, {
@@ -236,7 +229,8 @@ var FirstPage = function (_React$Component2) {
               { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
               'Next'
             )
-          )
+          ),
+          React.createElement('img', { src: 'http://logo.pizza/img/cat-walk/cat-walk.png', className: 'logo' })
         );
       } else {
         return null;
@@ -299,6 +293,7 @@ var SecondPage = function (_React$Component3) {
               type: 'input',
               className: 'addressLine1',
               value: this.state.addressLine1,
+              placeholder: 'Line 1',
               onChange: this.handleChange.bind(this)
             })
           ),
@@ -309,6 +304,7 @@ var SecondPage = function (_React$Component3) {
               type: 'input',
               className: 'addressLine2',
               value: this.state.addressLine2,
+              placeholder: 'Line 2',
               onChange: this.handleChange.bind(this)
             })
           ),
@@ -369,6 +365,7 @@ var SecondPage = function (_React$Component3) {
               type: 'input',
               className: 'phoneNumber',
               value: this.state.phoneNumber,
+              placeholder: 'XXX XXX  XXXX',
               onChange: this.handleChange.bind(this)
             })
           ),
@@ -388,7 +385,8 @@ var SecondPage = function (_React$Component3) {
               { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
               'Next'
             )
-          )
+          ),
+          React.createElement('img', { src: 'http://logo.pizza/img/cat-walk/cat-walk.png', className: 'logo' })
         );
       } else {
         return null;
@@ -449,6 +447,7 @@ var ThirdPage = function (_React$Component4) {
               type: 'input',
               className: 'creditCard',
               value: this.state.creditCard,
+              placeholder: 'XXXX XXXX XXXX XXXX',
               onChange: this.handleChange.bind(this)
             })
           ),
@@ -464,6 +463,7 @@ var ThirdPage = function (_React$Component4) {
               type: 'input',
               className: 'expiryDate',
               value: this.state.expiryDate,
+              placeholder: 'XX/XX',
               onChange: this.handleChange.bind(this)
             })
           ),
@@ -478,7 +478,6 @@ var ThirdPage = function (_React$Component4) {
             React.createElement('input', {
               type: 'password',
               className: 'cvv',
-              value: this.state.cvv,
               onChange: this.handleChange.bind(this)
             })
           ),
@@ -513,7 +512,8 @@ var ThirdPage = function (_React$Component4) {
               { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
               'Next'
             )
-          )
+          ),
+          React.createElement('img', { src: 'http://logo.pizza/img/cat-walk/cat-walk.png', className: 'logo' })
         );
       } else {
         return null;
@@ -534,8 +534,8 @@ function ConfirmationPage(props) {
       { className: 'holderConfirmationPage' },
       React.createElement(
         'div',
-        { className: 'css' },
-        ' Name '
+        { className: 'cssConfMsg' },
+        ' We\'ve received your order! You will receive a confirmation email shortly. '
       ),
       React.createElement(
         'div',
@@ -546,8 +546,8 @@ function ConfirmationPage(props) {
       ),
       React.createElement(
         'div',
-        { className: 'css' },
-        ' Email '
+        { className: 'cssLast' },
+        ' Name '
       ),
       React.createElement(
         'div',
@@ -558,20 +558,8 @@ function ConfirmationPage(props) {
       ),
       React.createElement(
         'div',
-        { className: 'css' },
-        ' Password '
-      ),
-      React.createElement(
-        'div',
-        { className: 'cssConf' },
-        ' ',
-        props.firstPageState.password,
-        ' '
-      ),
-      React.createElement(
-        'div',
-        { className: 'css' },
-        ' Address '
+        { className: 'cssLast' },
+        ' Email '
       ),
       React.createElement(
         'div',
@@ -589,8 +577,8 @@ function ConfirmationPage(props) {
       ),
       React.createElement(
         'div',
-        { className: 'css' },
-        ' City '
+        { className: 'cssLast' },
+        ' Address '
       ),
       React.createElement(
         'div',
@@ -601,32 +589,44 @@ function ConfirmationPage(props) {
       ),
       React.createElement(
         'div',
-        { className: 'css' },
-        ' State '
+        { className: 'cssLast' },
+        ' City '
       ),
       React.createElement(
         'div',
-        { className: 'cssConf' },
-        ' ',
-        props.secondPageState.state,
-        ' '
-      ),
-      React.createElement(
-        'div',
-        { className: 'css' },
-        ' Zip '
-      ),
-      React.createElement(
-        'div',
-        { className: 'cssConf' },
-        ' ',
-        props.secondPageState.zipCode,
-        ' '
-      ),
-      React.createElement(
-        'div',
-        { className: 'css' },
-        ' Phone Number '
+        { className: 'addressInfoHolder' },
+        React.createElement(
+          'div',
+          { className: 'addressInfo' },
+          React.createElement(
+            'div',
+            { className: 'cssConf' },
+            ' ',
+            props.secondPageState.state,
+            ' '
+          ),
+          React.createElement(
+            'div',
+            { className: 'cssLast' },
+            ' State '
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'addressInfo' },
+          React.createElement(
+            'div',
+            { className: 'cssConf' },
+            ' ',
+            props.secondPageState.zipCode,
+            ' '
+          ),
+          React.createElement(
+            'div',
+            { className: 'cssLast' },
+            ' Zip Code'
+          )
+        )
       ),
       React.createElement(
         'div',
@@ -637,8 +637,8 @@ function ConfirmationPage(props) {
       ),
       React.createElement(
         'div',
-        { className: 'css' },
-        ' Credit Card Number '
+        { className: 'cssLast' },
+        ' Phone Number '
       ),
       React.createElement(
         'div',
@@ -649,40 +649,62 @@ function ConfirmationPage(props) {
       ),
       React.createElement(
         'div',
-        { className: 'css' },
-        ' Expiry Date '
+        { className: 'cssLast' },
+        ' Credit Card Number '
       ),
       React.createElement(
         'div',
-        { className: 'cssConf' },
-        ' ',
-        props.thirdPageState.expiryDate,
-        ' '
+        { className: 'ccInfoHolder' },
+        React.createElement(
+          'div',
+          { className: 'ccInfo' },
+          React.createElement(
+            'div',
+            { className: 'cssConf' },
+            ' ',
+            props.thirdPageState.expiryDate,
+            ' '
+          ),
+          React.createElement(
+            'div',
+            { className: 'cssLast' },
+            ' Expiry Date '
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'ccInfo' },
+          React.createElement(
+            'div',
+            { className: 'cssConf' },
+            ' ',
+            props.thirdPageState.cvv,
+            ' '
+          ),
+          React.createElement(
+            'div',
+            { className: 'cssLast' },
+            ' CVV '
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'ccInfo' },
+          React.createElement(
+            'div',
+            { className: 'cssConf' },
+            ' ',
+            props.thirdPageState.billingZC,
+            ' '
+          ),
+          React.createElement(
+            'div',
+            { className: 'cssLast' },
+            ' Billing Zip '
+          )
+        )
       ),
-      React.createElement(
-        'div',
-        { className: 'css' },
-        ' CVV '
-      ),
-      React.createElement(
-        'div',
-        { className: 'cssConf' },
-        ' ',
-        props.thirdPageState.cvv,
-        ' '
-      ),
-      React.createElement(
-        'div',
-        { className: 'css' },
-        ' Billing Zip '
-      ),
-      React.createElement(
-        'div',
-        { className: 'cssConf' },
-        ' ',
-        props.thirdPageState.billingZC,
-        ' '
-      )
+      React.createElement('img', { src: 'http://logo.pizza/img/cat-walk/cat-walk.png', className: 'logo' })
     );
   } else {
     return null;

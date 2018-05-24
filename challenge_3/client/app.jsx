@@ -9,12 +9,6 @@ class App extends React.Component {
     };
   }
 
-  onCheckoutClick() {
-    this.setState({
-      currentPage: 1
-    });
-  }
-
   postData(url, data) {
     return fetch(url, {
       body: JSON.stringify(data),
@@ -172,6 +166,7 @@ class FirstPage extends React.Component {
               Next
             </span>
           </div>
+          <img src="http://logo.pizza/img/cat-walk/cat-walk.png" className="logo" />
         </div>
       );
     } else {
@@ -215,6 +210,7 @@ class SecondPage extends React.Component {
               type="input"
               className="addressLine1"
               value={this.state.addressLine1}
+              placeholder="Line 1"
               onChange={this.handleChange.bind(this)}
             />
           </div>
@@ -223,6 +219,7 @@ class SecondPage extends React.Component {
               type="input"
               className="addressLine2"
               value={this.state.addressLine2}
+              placeholder="Line 2"
               onChange={this.handleChange.bind(this)}
             />
           </div>
@@ -263,6 +260,7 @@ class SecondPage extends React.Component {
               type="input"
               className="phoneNumber"
               value={this.state.phoneNumber}
+              placeholder="XXX XXX  XXXX"
               onChange={this.handleChange.bind(this)}
             />
           </div>
@@ -278,6 +276,7 @@ class SecondPage extends React.Component {
               Next
             </span>
           </div>
+          <img src="http://logo.pizza/img/cat-walk/cat-walk.png" className="logo" />
         </div>
       );
     } else {
@@ -319,6 +318,7 @@ class ThirdPage extends React.Component {
               type="input"
               className="creditCard"
               value={this.state.creditCard}
+              placeholder="XXXX XXXX XXXX XXXX"
               onChange={this.handleChange.bind(this)}
             />
           </div>
@@ -329,6 +329,7 @@ class ThirdPage extends React.Component {
               type="input"
               className="expiryDate"
               value={this.state.expiryDate}
+              placeholder="XX/XX"
               onChange={this.handleChange.bind(this)}
             />
           </div>
@@ -338,7 +339,6 @@ class ThirdPage extends React.Component {
             <input
               type="password"
               className="cvv"
-              value={this.state.cvv}
               onChange={this.handleChange.bind(this)}
             />
           </div>
@@ -364,6 +364,7 @@ class ThirdPage extends React.Component {
               Next
             </span>
           </div>
+          <img src="http://logo.pizza/img/cat-walk/cat-walk.png" className="logo" />
         </div>
       );
     } else {
@@ -377,42 +378,60 @@ function ConfirmationPage(props) {
   if (props.currentPage === 4) {
     return (
       <div className="holderConfirmationPage">
-        <div className="css"> Name </div>
+
+        <div className="cssConfMsg"> We've received your order! You will receive a confirmation email shortly. </div>
         <div className="cssConf"> {props.firstPageState.name} </div>
+        <div className="cssLast"> Name </div>
 
-        <div className="css"> Email </div>
         <div className="cssConf"> {props.firstPageState.email} </div>
+        <div className="cssLast"> Email </div>
 
-        <div className="css"> Password </div>
-        <div className="cssConf"> {props.firstPageState.password} </div>
+        {/* <div className="cssLast"> Password </div>
+        <div className="cssConf"> {props.firstPageState.password} </div> */}
 
-        <div className="css"> Address </div>
         <div className="cssConf"> {props.secondPageState.addressLine1} </div>
         <div className="cssConf"> {props.secondPageState.addressLine2} </div>
-
-        <div className="css"> City </div>
+        <div className="cssLast"> Address </div>
+        
         <div className="cssConf"> {props.secondPageState.city} </div>
+        <div className="cssLast"> City </div>
 
-        <div className="css"> State </div>
+        <div className="addressInfoHolder">
+        <div className="addressInfo">
         <div className="cssConf"> {props.secondPageState.state} </div>
+        <div className="cssLast"> State </div>
+        </div>
 
-        <div className="css"> Zip </div>
+        <div className="addressInfo">
         <div className="cssConf"> {props.secondPageState.zipCode} </div>
+        <div className="cssLast"> Zip Code</div>
+        </div>
+        </div>
 
-        <div className="css"> Phone Number </div>
         <div className="cssConf"> {props.secondPageState.phoneNumber} </div>
+        <div className="cssLast"> Phone Number </div>
 
-        <div className="css"> Credit Card Number </div>
         <div className="cssConf"> {props.thirdPageState.creditCard} </div>
-
-        <div className="css"> Expiry Date </div>
+        <div className="cssLast"> Credit Card Number </div>
+        
+        <div className="ccInfoHolder">
+        <div className="ccInfo">
         <div className="cssConf"> {props.thirdPageState.expiryDate} </div>
-
-        <div className="css"> CVV </div>
+        <div className="cssLast"> Expiry Date </div>
+        </div>
+        
+        <div className="ccInfo">
         <div className="cssConf"> {props.thirdPageState.cvv} </div>
-
-        <div className="css"> Billing Zip </div>
+        <div className="cssLast"> CVV </div>
+        </div>
+        
+        <div className="ccInfo">
         <div className="cssConf"> {props.thirdPageState.billingZC} </div>
+        <div className="cssLast"> Billing Zip </div>
+        </div>
+        </div>
+        
+        <img src="http://logo.pizza/img/cat-walk/cat-walk.png" className="logo" />
       </div>
     );
   } else {
