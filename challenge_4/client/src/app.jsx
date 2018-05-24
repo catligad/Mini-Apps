@@ -23,13 +23,16 @@ class App extends Component{
     this.setState( (prevState, props) => {
       prevState.board[colIndex][cellIndex] = 1;
       prevState.turn = !prevState.turn;
-      return {board: prevState.board, turn:prevState.turn};
+      return {
+        board: prevState.board, 
+        turn:prevState.turn
+      };
     })
   }
 
-  componentDidUpdate(){
-    console.log(this.state);
-  }
+  // componentDidUpdate(){
+  //   console.log(this.state);
+  // }
 
   render(){
     const columns = this.state.board.map( (arr, index) => 
@@ -37,6 +40,7 @@ class App extends Component{
       index={index} 
       arr={arr} 
       colClick={this.onColClick.bind(this)} 
+      turn = {this.state.turn}
       />
     );
     return(

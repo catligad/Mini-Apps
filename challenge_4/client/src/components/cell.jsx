@@ -11,7 +11,7 @@ export default class Cell extends Component {
   render(){
     return (
       <div className="cell" 
-      style={{backgroundColor: this.state.bgColor}} ></div>
+      style={{backgroundColor: this.props.bgColor}} ></div>
     )
   }
 }
