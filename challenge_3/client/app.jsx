@@ -15,6 +15,17 @@ class App extends React.Component {
     });
   }
 
+  postData(url, data) {
+    return fetch(url, {
+      body: JSON.stringify(data),
+      cache: 'no-cache',
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+  }
+
   onFirstPageClick(btn, state) {
     if (btn == "previousBtn") {
       this.setState({
@@ -25,6 +36,8 @@ class App extends React.Component {
         currentPage: 2,
         firstPageState: state
       });
+      this.postData('http://127.0.0.1:3000/page1', state)
+        .then(data => console.log(data));
     }
   }
 
@@ -39,6 +52,8 @@ class App extends React.Component {
         secondPageState: state
       });
     }
+    this.postData('http://127.0.0.1:3000/page1', state)
+        .then(data => console.log(data));
   }
 
   onThirdPageClick(btn, state) {
@@ -52,6 +67,8 @@ class App extends React.Component {
         thirdPageState: state
       });
     }
+    this.postData('http://127.0.0.1:3000/page1', state)
+        .then(data => console.log(data));
   }
 
   render() {

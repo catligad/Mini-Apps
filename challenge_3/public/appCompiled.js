@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -28,14 +28,26 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: "onCheckoutClick",
+    key: 'onCheckoutClick',
     value: function onCheckoutClick() {
       this.setState({
         currentPage: 1
       });
     }
   }, {
-    key: "onFirstPageClick",
+    key: 'postData',
+    value: function postData(url, data) {
+      return fetch(url, {
+        body: JSON.stringify(data),
+        cache: 'no-cache',
+        headers: {
+          'content-type': 'application/json'
+        },
+        method: 'POST'
+      });
+    }
+  }, {
+    key: 'onFirstPageClick',
     value: function onFirstPageClick(btn, state) {
       if (btn == "previousBtn") {
         this.setState({
@@ -46,10 +58,13 @@ var App = function (_React$Component) {
           currentPage: 2,
           firstPageState: state
         });
+        this.postData('http://127.0.0.1:3000/page1', state).then(function (data) {
+          return console.log(data);
+        });
       }
     }
   }, {
-    key: "onSecondPageClick",
+    key: 'onSecondPageClick',
     value: function onSecondPageClick(btn, state) {
       if (btn == "previousBtn") {
         this.setState({
@@ -61,9 +76,12 @@ var App = function (_React$Component) {
           secondPageState: state
         });
       }
+      this.postData('http://127.0.0.1:3000/page1', state).then(function (data) {
+        return console.log(data);
+      });
     }
   }, {
-    key: "onThirdPageClick",
+    key: 'onThirdPageClick',
     value: function onThirdPageClick(btn, state) {
       if (btn == "previousBtn") {
         this.setState({
@@ -75,12 +93,15 @@ var App = function (_React$Component) {
           thirdPageState: state
         });
       }
+      this.postData('http://127.0.0.1:3000/page1', state).then(function (data) {
+        return console.log(data);
+      });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
+        'div',
         null,
         React.createElement(CheckoutPage, {
           click: this.onCheckoutClick.bind(this),
@@ -121,9 +142,9 @@ function CheckoutPage(props) {
 
   if (props.currentPage === 0) {
     return React.createElement(
-      "div",
-      { className: "checkout", onClick: handleClick.bind(this) },
-      "Checkout"
+      'div',
+      { className: 'checkout', onClick: handleClick.bind(this) },
+      'Checkout'
     );
   } else {
     return null;
@@ -149,7 +170,7 @@ var FirstPage = function (_React$Component2) {
   }
 
   _createClass(FirstPage, [{
-    key: "handleChange",
+    key: 'handleChange',
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.className, event.target.value));
     }
@@ -159,83 +180,83 @@ var FirstPage = function (_React$Component2) {
     // }
 
   }, {
-    key: "handleNavClick",
+    key: 'handleNavClick',
     value: function handleNavClick(event) {
       var state = this.state;
       return this.props.click(event.target.className, state);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       if (this.props.currentPage === 1) {
         return React.createElement(
-          "div",
-          { className: "holderFirstPage" },
+          'div',
+          { className: 'holderFirstPage' },
           React.createElement(
-            "div",
-            { className: "css" },
-            " Name "
+            'div',
+            { className: 'css' },
+            ' Name '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "name",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'name',
               value: this.state.name,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " Email "
+            'div',
+            { className: 'css' },
+            ' Email '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "email",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'email',
               value: this.state.email,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " Password "
+            'div',
+            { className: 'css' },
+            ' Password '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "password",
-              className: "password",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'password',
+              className: 'password',
               value: this.state.password,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "navigator" },
+            'div',
+            { className: 'navigator' },
             React.createElement(
-              "span",
+              'span',
               {
-                className: "previousBtn",
+                className: 'previousBtn',
                 onClick: this.handleNavClick.bind(this)
               },
-              "Previous"
+              'Previous'
             ),
             React.createElement(
-              "span",
-              { className: "submitBtn" },
-              " Submit "
+              'span',
+              { className: 'submitBtn' },
+              ' Submit '
             ),
             React.createElement(
-              "span",
-              { className: "nextBtn", onClick: this.handleNavClick.bind(this) },
-              "Next"
+              'span',
+              { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
+              'Next'
             )
           )
         );
@@ -271,7 +292,7 @@ var SecondPage = function (_React$Component3) {
   }
 
   _createClass(SecondPage, [{
-    key: "handleChange",
+    key: 'handleChange',
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.className, event.target.value));
     }
@@ -281,123 +302,123 @@ var SecondPage = function (_React$Component3) {
     // }
 
   }, {
-    key: "handleNavClick",
+    key: 'handleNavClick',
     value: function handleNavClick(event) {
       var state = this.state;
       return this.props.click(event.target.className, state);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       if (this.props.currentPage === 2) {
         return React.createElement(
-          "div",
-          { className: "holderSecondPage" },
+          'div',
+          { className: 'holderSecondPage' },
           React.createElement(
-            "div",
-            { className: "css" },
-            " Address "
+            'div',
+            { className: 'css' },
+            ' Address '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "addressLine1",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'addressLine1',
               value: this.state.addressLine1,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "addressLine2",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'addressLine2',
               value: this.state.addressLine2,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " City "
+            'div',
+            { className: 'css' },
+            ' City '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "city",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'city',
               value: this.state.city,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " State "
+            'div',
+            { className: 'css' },
+            ' State '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "state",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'state',
               value: this.state.state,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " Zip Code "
+            'div',
+            { className: 'css' },
+            ' Zip Code '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "zipCode",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'zipCode',
               value: this.state.zipCode,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " Phone Number "
+            'div',
+            { className: 'css' },
+            ' Phone Number '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "phoneNumber",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'phoneNumber',
               value: this.state.phoneNumber,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "navigator" },
+            'div',
+            { className: 'navigator' },
             React.createElement(
-              "span",
+              'span',
               {
-                className: "previousBtn",
+                className: 'previousBtn',
                 onClick: this.handleNavClick.bind(this)
               },
-              "Previous"
+              'Previous'
             ),
             React.createElement(
-              "span",
-              { className: "submitBtn" },
-              " Submit "
+              'span',
+              { className: 'submitBtn' },
+              ' Submit '
             ),
             React.createElement(
-              "span",
-              { className: "nextBtn", onClick: this.handleNavClick.bind(this) },
-              "Next"
+              'span',
+              { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
+              'Next'
             )
           )
         );
@@ -431,7 +452,7 @@ var ThirdPage = function (_React$Component4) {
   }
 
   _createClass(ThirdPage, [{
-    key: "handleChange",
+    key: 'handleChange',
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.className, event.target.value));
     }
@@ -441,98 +462,98 @@ var ThirdPage = function (_React$Component4) {
     // }
 
   }, {
-    key: "handleNavClick",
+    key: 'handleNavClick',
     value: function handleNavClick(event) {
       var state = this.state;
       return this.props.click(event.target.className, state);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       if (this.props.currentPage === 3) {
         return React.createElement(
-          "div",
-          { className: "holderThirdPage" },
+          'div',
+          { className: 'holderThirdPage' },
           React.createElement(
-            "div",
-            { className: "css" },
-            " Credit Card "
+            'div',
+            { className: 'css' },
+            ' Credit Card '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "creditCard",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'creditCard',
               value: this.state.creditCard,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " Expiry Date "
+            'div',
+            { className: 'css' },
+            ' Expiry Date '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "expiryDate",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'expiryDate',
               value: this.state.expiryDate,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " CVV "
+            'div',
+            { className: 'css' },
+            ' CVV '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "password",
-              className: "cvv",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'password',
+              className: 'cvv',
               value: this.state.cvv,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "css" },
-            " Billing Zip "
+            'div',
+            { className: 'css' },
+            ' Billing Zip '
           ),
           React.createElement(
-            "div",
-            { className: "form" },
-            React.createElement("input", {
-              type: "input",
-              className: "billingZC",
+            'div',
+            { className: 'form' },
+            React.createElement('input', {
+              type: 'input',
+              className: 'billingZC',
               value: this.state.billingZC,
               onChange: this.handleChange.bind(this)
             })
           ),
           React.createElement(
-            "div",
-            { className: "navigator" },
+            'div',
+            { className: 'navigator' },
             React.createElement(
-              "span",
+              'span',
               {
-                className: "previousBtn",
+                className: 'previousBtn',
                 onClick: this.handleNavClick.bind(this)
               },
-              "Previous"
+              'Previous'
             ),
             React.createElement(
-              "span",
-              { className: "submitBtn" },
-              " Submit "
+              'span',
+              { className: 'submitBtn' },
+              ' Submit '
             ),
             React.createElement(
-              "span",
-              { className: "nextBtn", onClick: this.handleNavClick.bind(this) },
-              "Next"
+              'span',
+              { className: 'nextBtn', onClick: this.handleNavClick.bind(this) },
+              'Next'
             )
           )
         );
@@ -551,158 +572,158 @@ var ThirdPage = function (_React$Component4) {
 function ConfirmationPage(props) {
   if (props.currentPage === 4) {
     return React.createElement(
-      "div",
-      { className: "holderConfirmationPage" },
+      'div',
+      { className: 'holderConfirmationPage' },
       React.createElement(
-        "div",
-        { className: "css" },
-        " Name "
+        'div',
+        { className: 'css' },
+        ' Name '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.firstPageState.name,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Email "
+        'div',
+        { className: 'css' },
+        ' Email '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.firstPageState.email,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Password "
+        'div',
+        { className: 'css' },
+        ' Password '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.firstPageState.password,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Address "
+        'div',
+        { className: 'css' },
+        ' Address '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.secondPageState.addressLine1,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.secondPageState.addressLine2,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " City "
+        'div',
+        { className: 'css' },
+        ' City '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.secondPageState.city,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " State "
+        'div',
+        { className: 'css' },
+        ' State '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.secondPageState.state,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Zip "
+        'div',
+        { className: 'css' },
+        ' Zip '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.secondPageState.zipCode,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Phone Number "
+        'div',
+        { className: 'css' },
+        ' Phone Number '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.secondPageState.phoneNumber,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Credit Card Number "
+        'div',
+        { className: 'css' },
+        ' Credit Card Number '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.thirdPageState.creditCard,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Expiry Date "
+        'div',
+        { className: 'css' },
+        ' Expiry Date '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.thirdPageState.expiryDate,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " CVV "
+        'div',
+        { className: 'css' },
+        ' CVV '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.thirdPageState.cvv,
-        " "
+        ' '
       ),
       React.createElement(
-        "div",
-        { className: "css" },
-        " Billing Zip "
+        'div',
+        { className: 'css' },
+        ' Billing Zip '
       ),
       React.createElement(
-        "div",
-        { className: "cssConf" },
-        " ",
+        'div',
+        { className: 'cssConf' },
+        ' ',
         props.thirdPageState.billingZC,
-        " "
+        ' '
       )
     );
   } else {
