@@ -14,17 +14,25 @@ class App extends Component{
               [0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0]
-              ]
+              ],
+      turn: 0,
     }
   }
 
-  onCellClick(index){
-    this.setState
+  onColClick(colIndex, cellIndex){
+    this.setState( (prevState, props) => {
+      prevState.board[colIndex][cellIndex] = 1;
+      return {board: prevState.board};
+    })
   }
 
   render(){
     const columns = this.state.board.map( (arr, index) => 
-      <Column key={index} index={index} cells={this.state.board} />
+      <Column key={index} 
+      index={index} 
+      arr={arr} 
+      colClick={this.onColClick.bind(this)} 
+      />
     );
     return(
       <div className="board">

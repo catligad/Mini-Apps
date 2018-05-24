@@ -5,27 +5,30 @@ import Cell from './cell.jsx';
 export default class Column extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      triggered: false,
-    }
   }
 
   handleClick() {
-    this.setState({
-      triggered: true,
-    })
-    console.log(`Column ${this.props.index} was clicked!`);
+    let cellIndex = 6;
+    for (let i = 0; i < this.props.arr.length; i++) {
+      if (this.props.arr[i] === 1) {
+        cellIndex = i-1;
+      }
+    }
+    this.props.colClick(this.props.index, cellIndex);
   }
 
   
   render(){
-    const cells = this.props.cells.map( (cell,index) => 
-      <Cell key={index} cellIndex={index} columnTriggered={this.state.triggered} colIndex={this.props.index} />
+    const cells = this.props.arr.map( (cell,index) => 
+      <Cell key={index} 
+      cellIndex={index} 
+      colIndex={this.props.index} 
+      cell={cell}
+       />
     );
 
     return (
       <div className="column" onClick={this.handleClick.bind(this)}>
-        {this.props.index}
         {cells}
       </div>
     )
