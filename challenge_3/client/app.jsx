@@ -26,65 +26,41 @@ class App extends React.Component {
     })
   }
 
-  onFirstPageClick(btn, state) {
+  onNaviClick(btn, state) {
     if (btn == "previousBtn") {
-      this.setState({
-        currentPage: 0
-      });
+      this.setState((prevState, props) => ({
+        currentPage: --prevState.currentPage,
+      }));
     } else if (btn == "nextBtn") {
-      this.setState({
-        currentPage: 2,
+      this.setState((prevState, props) => ({
+        currentPage: ++prevState.currentPage,
         firstPageState: state
-      });
+      }));
       this.postData('http://127.0.0.1:3000/page1', state);
+    } else if (btn == "checkout") {
+      this.setState((prevState, props) => ({
+        currentPage: ++prevState.currentPage,
+      }));
     }
-  }
-
-  onSecondPageClick(btn, state) {
-    if (btn == "previousBtn") {
-      this.setState({
-        currentPage: 1
-      });
-    } else if (btn == "nextBtn") {
-      this.setState({
-        currentPage: 3,
-        secondPageState: state
-      });
-    }
-    this.postData('http://127.0.0.1:3000/page1', state);
-  }
-
-  onThirdPageClick(btn, state) {
-    if (btn == "previousBtn") {
-      this.setState({
-        currentPage: 2
-      });
-    } else if (btn == "nextBtn") {
-      this.setState({
-        currentPage: 4,
-        thirdPageState: state
-      });
-    }
-    this.postData('http://127.0.0.1:3000/page1', state);
   }
 
   render() {
     return (
       <div>
         <CheckoutPage
-          click={this.onCheckoutClick.bind(this)}
+          click={this.onNaviClick.bind(this)}
           currentPage={this.state.currentPage}
         />
         <FirstPage
-          click={this.onFirstPageClick.bind(this)}
+          click={this.onNaviClick.bind(this)}
           currentPage={this.state.currentPage}
         />
         <SecondPage
-          click={this.onSecondPageClick.bind(this)}
+          click={this.onNaviClick.bind(this)}
           currentPage={this.state.currentPage}
         />
         <ThirdPage
-          click={this.onThirdPageClick.bind(this)}
+          click={this.onNaviClick.bind(this)}
           currentPage={this.state.currentPage}
         />
         <ConfirmationPage
@@ -101,7 +77,7 @@ class App extends React.Component {
 // ------------------------------------------------------------
 function CheckoutPage(props) {
   function handleClick() {
-    return props.click();
+    return props.click('checkout');
   }
 
   if (props.currentPage === 0) {
@@ -370,7 +346,6 @@ class ThirdPage extends React.Component {
             >
               Previous
             </span>
-
             <span className="nextBtn" onClick={this.handleNavClick.bind(this)}>
               Next
             </span>

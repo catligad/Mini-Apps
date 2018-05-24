@@ -47,49 +47,29 @@ var App = function (_React$Component) {
       });
     }
   }, {
-    key: 'onFirstPageClick',
-    value: function onFirstPageClick(btn, state) {
+    key: 'onNaviClick',
+    value: function onNaviClick(btn, state) {
       if (btn == "previousBtn") {
-        this.setState({
-          currentPage: 0
+        this.setState(function (prevState, props) {
+          return {
+            currentPage: --prevState.currentPage
+          };
         });
       } else if (btn == "nextBtn") {
-        this.setState({
-          currentPage: 2,
-          firstPageState: state
+        this.setState(function (prevState, props) {
+          return {
+            currentPage: ++prevState.currentPage,
+            firstPageState: state
+          };
         });
         this.postData('http://127.0.0.1:3000/page1', state);
-      }
-    }
-  }, {
-    key: 'onSecondPageClick',
-    value: function onSecondPageClick(btn, state) {
-      if (btn == "previousBtn") {
-        this.setState({
-          currentPage: 1
-        });
-      } else if (btn == "nextBtn") {
-        this.setState({
-          currentPage: 3,
-          secondPageState: state
+      } else if (btn == "checkout") {
+        this.setState(function (prevState, props) {
+          return {
+            currentPage: ++prevState.currentPage
+          };
         });
       }
-      this.postData('http://127.0.0.1:3000/page1', state);
-    }
-  }, {
-    key: 'onThirdPageClick',
-    value: function onThirdPageClick(btn, state) {
-      if (btn == "previousBtn") {
-        this.setState({
-          currentPage: 2
-        });
-      } else if (btn == "nextBtn") {
-        this.setState({
-          currentPage: 4,
-          thirdPageState: state
-        });
-      }
-      this.postData('http://127.0.0.1:3000/page1', state);
     }
   }, {
     key: 'render',
@@ -98,19 +78,19 @@ var App = function (_React$Component) {
         'div',
         null,
         React.createElement(CheckoutPage, {
-          click: this.onCheckoutClick.bind(this),
+          click: this.onNaviClick.bind(this),
           currentPage: this.state.currentPage
         }),
         React.createElement(FirstPage, {
-          click: this.onFirstPageClick.bind(this),
+          click: this.onNaviClick.bind(this),
           currentPage: this.state.currentPage
         }),
         React.createElement(SecondPage, {
-          click: this.onSecondPageClick.bind(this),
+          click: this.onNaviClick.bind(this),
           currentPage: this.state.currentPage
         }),
         React.createElement(ThirdPage, {
-          click: this.onThirdPageClick.bind(this),
+          click: this.onNaviClick.bind(this),
           currentPage: this.state.currentPage
         }),
         React.createElement(ConfirmationPage, {
@@ -131,7 +111,7 @@ var App = function (_React$Component) {
 
 function CheckoutPage(props) {
   function handleClick() {
-    return props.click();
+    return props.click('checkout');
   }
 
   if (props.currentPage === 0) {

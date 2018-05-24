@@ -14,27 +14,27 @@ db.once('open', function() {
 var Schema = mongoose.Schema;
 
 var userInfo = new Schema ({
-  name: String,
-  email: String,
-  password: String,
-  addressInfo: {type: Schema.Types.ObjectId, ref: 'Address'},
-  ccInfo: {type: Schema.Types.ObjectId, ref: 'CC'}
+  name: {type: String, required: true},
+  email: {type: String, required: true},
+  password: {type: String, required: true},
+  // addressInfo: {type: Schema.Types.ObjectId, ref: 'Address'},
+  // ccInfo: {type: Schema.Types.ObjectId, ref: 'CC'}
 });
 
 var addressInfo = new Schema({
-  addressLine1: String,
-  addressLine2: String,
-  city: String,
-  state: String,
-  zipCode: String,
-  phoneNumber: String
+  addressLine1: {type: String, required: true},
+  addressLine2: {type: String, required: false},
+  city: {type: String, required: true},
+  state: {type: String, required: true},
+  zipCode: {type: String, required: true},
+  phoneNumber: {type: String, required: true}
 });
 
 var ccInfo = new Schema({
-  creditCard: String,
-  expiryDate: String,
-  cvv: String,
-  billingZC: String
+  creditCard: {type: String, required: true},
+  expiryDate: {type: String, required: true},
+  cvv: {type: String, required: true},
+  billingZC: {type: String, required: true}
 })
 
 
