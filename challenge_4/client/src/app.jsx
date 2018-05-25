@@ -41,14 +41,41 @@ class App extends Component{
     }
   }
 
+  checkRows() {
+    
+  }
+  
+  checkCols() {
+    let board = this.state.board;
+    for (let row = board.length-1; row > 0; row--) {
+      let countB = 0;
+      let countR = 0;
+      for (let cell = board[row].length-1; cell > 0; cell--){
+        if (board[row][cell] === 'B'){
+          countB++;
+        } else if (board[row][cell] === 'R') {
+          countR++;
+        }
+      }
+      if (countB === 4) {
+        alert('B won!');
+      } else if (countR === 4) {
+        alert('R won!');
+      }
+    }
+  }
+
+  // checkMDiags() {
+
+  // }
+
+  // checkmDiags() {
+
+  // }
+
   componentDidUpdate(){
-    // let board = this.state.board;
-    // for (let row = 0; row < board.length; row++) {
-    //   for (let cell = 0; cell < board[row].length; cell++){
-    //     if ()
-    //   }
-    // }
-    console.log(this.state)
+    console.log(this.state.board)
+    this.checkCols();
   }
 
   render(){
