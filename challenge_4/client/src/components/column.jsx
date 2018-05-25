@@ -16,15 +16,19 @@ export default function Column (props) {
     }
     props.colClick(props.index, cellIndex);
   }
-  const cells = props.arr.map( (cell,index) => {
-    var bgColor;
+
+  function checkbgColor(cell) {
     if (cell === 0) {
-      bgColor = 'white';
+      return 'white';
     } else if (cell === 'B') {
-      bgColor = 'black';
+      return  'black';
     } else if (cell === 'R') {
-      bgColor = 'red';
+      return 'red';
     }
+  }
+
+  const cells = props.arr.map( (cell,index) => {
+    const bgColor = checkbgColor(cell);
     return(
     <Cell key={index} 
     cellIndex={index} 
