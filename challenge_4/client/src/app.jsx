@@ -87,7 +87,7 @@ class App extends Component{
               [0,0,0,0,0,0]
               ],
       turn: true, //black
-      winner:'',
+      winner:0,
       player1: 'Black',
       player2: 'Red',
       formHide: false,
@@ -124,8 +124,10 @@ class App extends Component{
 
   placeHolderMessage(){
     var placeholder;
-    if (this.state.winner == this.state.player1 || this.state.winner == this.state.player2){
-      return `${this.state.winner} won!`
+    if (this.state.winner !== 0) {
+      if (this.state.winner == this.state.player1 || this.state.winner == this.state.player2){
+        return `${this.state.winner} won!`
+      }
     }
     if (this.state.turn) {
       return `${this.state.player1}'s Turn`
@@ -136,21 +138,22 @@ class App extends Component{
   
   render(){
     const columns = this.state.board.map( (arr, index) => 
-      <Column key={index} 
-      index={index} 
-      arr={arr} 
-      colClick={this.onColClick.bind(this)} 
-      turn = {this.state.turn}
-      player1 = {this.state.player1}
-      player2 = {this.state.player2}
-      />
-    );
-
+    <Column key={index} 
+    index={index} 
+    arr={arr} 
+    colClick={this.onColClick.bind(this)} 
+    turn = {this.state.turn}
+    player1 = {this.state.player1}
+    player2 = {this.state.player2}
+    />
+  );
+  
     const placeholder = this.placeHolderMessage();
 
     return(
       <div className="appHolder">
-        <PlayerInput click={this.handleBtnClick.bind(this)} 
+        <PlayerInput 
+        click={this.handleBtnClick.bind(this)} 
         player1={this.state.player1} 
         player2={this.state.player2} 
         change={this.handleFormChange.bind(this)} 

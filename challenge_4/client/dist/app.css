@@ -11,8 +11,10 @@ body{
 }
 
 #title{
-  font-size: 30px;
-  margin-bottom: 20px;
+  font-size: 65px;
+  margin-bottom: 5px;
+  font-family: 'Sacramento', 'cursive';
+  font-weight: bold;
 }
 
 .appHolder{
@@ -22,9 +24,39 @@ body{
   align-items: center;
 }
 
+.players{
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.submitBtn{
+  font-family: 'Josefin Slab', 'serif';
+  background-color: rgb(248, 248, 197);
+  padding: 5px;
+}
+
+.submitBtn:hover{
+  background-color: purple;
+  color: white;
+  cursor: crosshair;
+}
+
+input{
+  font-family: 'Josefin Slab', 'serif';
+  font-size: 90%;
+  border: none;
+  border-bottom: 2px solid black;
+  height: 100%;
+  outline: none;
+}
+
 .winner{
   font-size: 30px;
-  margin-bottom: 50px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-family: 'Josefin Slab', 'serif';
 }
 
 .board{

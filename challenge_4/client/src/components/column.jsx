@@ -31,8 +31,6 @@ export default function Column (props) {
     const bgColor = checkbgColor(cell);
     return(
     <Cell key={index} 
-    cellIndex={index} 
-    colIndex={props.index} 
     bgColor={bgColor}
       />
     )}
