@@ -44,7 +44,7 @@ function checkWinner(board) {
   }
 
   //check M diag
-  for (let r = 0; r < 3; r++) {
+  for (let r = 0; r < 4; r++) {
     for (let c = 0; c < 4; c++) {
       if (checkLine(
           board[r][c],
@@ -58,7 +58,7 @@ function checkWinner(board) {
   }
 
   //check m diag
-  for (let r = 3; r < 6; r++) {
+  for (let r = 4; r < 6; r++) {
     for (let c = 0; c < 4; c++) {
       if (checkLine(
           board[r][c],
