@@ -15,24 +15,41 @@ class App extends Component{
               [0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0]
               ],
-      turn: true,
+      turn: true, //black
     }
   }
 
   onColClick(colIndex, cellIndex){
-    this.setState( (prevState, props) => {
-      prevState.board[colIndex][cellIndex] = 1;
-      prevState.turn = !prevState.turn;
-      return {
-        board: prevState.board, 
-        turn:prevState.turn
-      };
-    })
+    if (this.state.turn) {
+      this.setState( (prevState, props) => {
+        prevState.board[colIndex][cellIndex] = 'B';
+        prevState.turn = !prevState.turn;
+        return {
+          board: prevState.board, 
+          turn:prevState.turn
+        };
+      })
+    } else if (!this.state.turn) {
+      this.setState( (prevState, props) => {
+        prevState.board[colIndex][cellIndex] = 'R';
+        prevState.turn = !prevState.turn;
+        return {
+          board: prevState.board, 
+          turn:prevState.turn
+        };
+      })
+    }
   }
 
-  // componentDidUpdate(){
-  //   console.log(this.state);
-  // }
+  componentDidUpdate(){
+    // let board = this.state.board;
+    // for (let row = 0; row < board.length; row++) {
+    //   for (let cell = 0; cell < board[row].length; cell++){
+    //     if ()
+    //   }
+    // }
+    console.log(this.state)
+  }
 
   render(){
     const columns = this.state.board.map( (arr, index) => 

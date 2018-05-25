@@ -2,15 +2,11 @@ import React, {Component} from 'react';
 import Cell from './cell.jsx';
 
 
-export default class Column extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  handleClick() {
+export default function Column (props) {
+  function handleClick() {
     let cellIndex = 6;
-    for (let i = 0; i < this.props.arr.length; i++) {
-      if (this.props.arr[i] === 1) {
+    for (let i = 0; i < props.arr.length; i++) {
+      if (props.arr[i] !== 0) {
         cellIndex = i-1;
         if (cellIndex < 0) {
           cellIndex = 0;
@@ -18,38 +14,29 @@ export default class Column extends Component {
         break;
       }
     }
-    this.props.colClick(this.props.index, cellIndex);
+    props.colClick(props.index, cellIndex);
   }
+  const cells = props.arr.map( (cell,index) => {
+    var bgColor;
+    if (cell === 0) {
+      bgColor = 'white';
+    } else if (cell === 'B') {
+      bgColor = 'black';
+    } else if (cell === 'R') {
+      bgColor = 'red';
+    }
+    return(
+    <Cell key={index} 
+    cellIndex={index} 
+    colIndex={props.index} 
+    bgColor={bgColor}
+      />
+    )}
+  );
 
-  setBgColor() {
-    
-  }
-  
-  render(){
-    const cells = this.props.arr.map( (cell,index) => {
-      var bgColor;
-      if (cell === 1) {
-        if (this.props.turn) {
-          bgColor = 'red';
-        } else {
-          bgColor = 'black';
-        }
-      } else {
-        bgColor = 'white';
-      }
-      return(
-      <Cell key={index} 
-      cellIndex={index} 
-      colIndex={this.props.index} 
-      bgColor={bgColor}
-       />
-      )}
-    );
-
-    return (
-      <div className="column" onClick={this.handleClick.bind(this)}>
-        {cells}
-      </div>
-    )
-  }
+  return (
+    <div className="column" onClick={handleClick.bind(this)}>
+      {cells}
+    </div>
+  )
 }
