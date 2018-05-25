@@ -12,6 +12,18 @@ body{
 
 #title{
   font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.appHolder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.winner{
+  font-size: 30px;
   margin-bottom: 50px;
 }
 

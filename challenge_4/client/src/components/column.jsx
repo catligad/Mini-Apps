@@ -20,9 +20,9 @@ export default function Column (props) {
   function checkbgColor(cell) {
     if (cell === 0) {
       return 'white';
-    } else if (cell === 'B') {
+    } else if (cell === props.player1) {
       return  'black';
-    } else if (cell === 'R') {
+    } else if (cell === props.player2) {
       return 'red';
     }
   }

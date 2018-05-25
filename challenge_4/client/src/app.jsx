@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import Column from './components/column.jsx';
+import PlayerInput from './components/playerInput.jsx';
 
 
 function checkLine(a,b,c,d) {
@@ -14,9 +15,9 @@ function checkLine(a,b,c,d) {
 
 function checkWinner(board) {
   let winner;
-  //check down
-  for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 7; c++) {
+  //check row
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 6; c++) {
       if (checkLine(
           board[r][c],
           board[r+1][c],
@@ -28,7 +29,7 @@ function checkWinner(board) {
     }
   }
 
-  //check row
+  //check column
   for (let r = 0; r < 6; r++) {
     for (let c = 0; c < 4; c++) {
       if (checkLine(
@@ -69,7 +70,6 @@ function checkWinner(board) {
       }
     }
   }
-
   return winner;
 }
 
@@ -88,6 +88,9 @@ class App extends Component{
               ],
       turn: true, //black
       winner:'',
+      player1: 'Black',
+      player2: 'Red',
+      formHide: false,
     }
   }
 
@@ -98,24 +101,36 @@ class App extends Component{
       turn: !turn,
     };
     if (this.state.turn) {
-      newState.board[colIndex][cellIndex] = 'B';
+      newState.board[colIndex][cellIndex] = this.state.player1;
     } else {
-      newState.board[colIndex][cellIndex] = 'R';
+      newState.board[colIndex][cellIndex] = this.state.player2;
     }
     const winner = checkWinner(newState.board);
     newState.winner = winner;
     this.setState(newState);
   }
 
+  handleBtnClick() {
+    this.setState({
+      formHide: true,
+    });
+  }
+
+  handleFormChange(player, input) {
+    this.setState({
+      [player]:input,
+    });
+  }
+
   placeHolderMessage(){
     var placeholder;
-    if (this.state.winner == 'B' || this.state.winner == 'R'){
-      return `Player ${this.state.winner} won!`
+    if (this.state.winner == this.state.player1 || this.state.winner == this.state.player2){
+      return `${this.state.winner} won!`
     }
     if (this.state.turn) {
-      return "Player Black Turn"
+      return `${this.state.player1}'s Turn`
     } else {
-      return "Player Red Turn"
+      return `${this.state.player2}'s Turn`
     }
   }
   
@@ -126,13 +141,20 @@ class App extends Component{
       arr={arr} 
       colClick={this.onColClick.bind(this)} 
       turn = {this.state.turn}
+      player1 = {this.state.player1}
+      player2 = {this.state.player2}
       />
     );
 
     const placeholder = this.placeHolderMessage();
 
     return(
-      <div>
+      <div className="appHolder">
+        <PlayerInput click={this.handleBtnClick.bind(this)} 
+        player1={this.state.player1} 
+        player2={this.state.player2} 
+        change={this.handleFormChange.bind(this)} 
+        formHide={this.state.formHide} />
         <div className="winner"> {placeholder}</div>
         <div className="board">{columns} </div>
       </div>
