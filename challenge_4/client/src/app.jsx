@@ -7,13 +7,14 @@ class App extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      board: [
-              [0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0]
+      board: [ //these are columns :(
+              [0,0,0,0,0,0], 
+              [0,0,0,0,0,0],
+              [0,0,0,0,0,0],
+              [0,0,0,0,0,0],
+              [0,0,0,0,0,0],
+              [0,0,0,0,0,0],
+              [0,0,0,0,0,0]
               ],
       turn: true, //black
     }
@@ -41,41 +42,81 @@ class App extends Component{
     }
   }
 
-  checkRows() {
-    
+  //I LOOKED ON STACK OVERFLOW FOR THIS GAME LOGIC. IT'S NOT MINE.
+  checkLine(a,b,c,d) {
+    return (
+      (a != 0) &&
+      (a == b) &&
+      (a == c) &&
+      (a == d)
+    );
   }
-  
-  checkCols() {
-    let board = this.state.board;
-    for (let row = board.length-1; row > 0; row--) {
-      let countB = 0;
-      let countR = 0;
-      for (let cell = board[row].length-1; cell > 0; cell--){
-        if (board[row][cell] === 'B'){
-          countB++;
-        } else if (board[row][cell] === 'R') {
-          countR++;
+
+  checkWinner(board) {
+    let winner;
+    //check down
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 7; c++) {
+        if (this.checkLine(
+            board[r][c],
+            board[r+1][c],
+            board[r+2][c],
+            board[r+3][c],
+          )) {
+        winner = (board[r][c] + 'won!');
         }
       }
-      if (countB === 4) {
-        alert('B won!');
-      } else if (countR === 4) {
-        alert('R won!');
+    }
+
+    //check row
+    for (let r = 0; r < 6; r++) {
+      for (let c = 0; c < 4; c++) {
+        if (this.checkLine(
+            board[r][c],
+            board[r][c+1],
+            board[r][c+2],
+            board[r][c+3],
+          )) {
+        winner = (board[r][c] + 'won!');
+        }
       }
+    }
+
+    //check M diag
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 4; c++) {
+        if (this.checkLine(
+            board[r][c],
+            board[r+1][c+1],
+            board[r+2][c+2],
+            board[r+3][c+3],
+          )) {
+        winner = (board[r][c] + 'won!');
+        }
+      }
+    }
+
+    //check m diag
+    for (let r = 3; r < 6; r++) {
+      for (let c = 0; c < 4; c++) {
+        if (this.checkLine(
+            board[r][c],
+            board[r-1][c+1],
+            board[r-2][c+2],
+            board[r-3][c+3],
+          )) {
+        winner = (board[r][c] + 'won!');
+        }
+      }
+    }
+    if (winner !== undefined) {
+      alert(winner);
     }
   }
 
-  // checkMDiags() {
-
-  // }
-
-  // checkmDiags() {
-
-  // }
-
   componentDidUpdate(){
-    console.log(this.state.board)
-    this.checkCols();
+    let board = this.state.board;
+    this.checkWinner(board);
   }
 
   render(){

@@ -4,7 +4,7 @@ import Cell from './cell.jsx';
 
 export default function Column (props) {
   function handleClick() {
-    let cellIndex = 6;
+    let cellIndex = 5;
     for (let i = 0; i < props.arr.length; i++) {
       if (props.arr[i] !== 0) {
         cellIndex = i-1;
