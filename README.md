@@ -4,8 +4,8 @@ These are mini-apps that I did for fun, to showcase my FE skills..
 ## Table of Contents
 
 1. [Challenge 1](#TicTacToe)
-1. [Challenge 2](#CSV Report Generator)
-1. [Challenge 3](#Checkout Feature)
+1. [Challenge 2](#CSVReportGenerator)
+1. [Challenge 3](#CheckoutFeature)
 1. [Challenge 4](#Connect4)
 
 ## TicTacToe
