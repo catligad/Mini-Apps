@@ -10,23 +10,23 @@ These are mini-apps that I did for fun, to showcase my FE skills..
 
 ## TicTacToe
 Tic Tac Toe using pure JS.
-###Images
+### Images
 ![tictactoe](./images/tictactoe.png)<!-- .element height="50%" width="50%" -->
 
 ## CSV Report Generator
 CSV to JSON generator using jQuery.
-###Images
+### Images
 ![start of experience](./images/CSVGenerator.png)<!-- .element height="50%" width="50%" -->
 
 ## Checkout Feature
 Single page webapp using MongoDB.
-###Images
+### Images
 ![start of experience](./images/checkout1.png)<!-- .element height="50%" width="50%" -->
 ![start of experience](./images/checkout2.png)<!-- .element height="50%" width="50%" -->
 
 ## Connect 4
 Connect4 using React.
-###Images
+### Images
 ![start of experience](./images/connect4.png)<!-- .element height="50%" width="50%" -->
 
 ## Requirements
